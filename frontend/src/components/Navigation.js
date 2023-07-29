@@ -1,30 +1,32 @@
-frontend/src/components/Navigation.js:
-```javascript
+// Implement navigation between views and routing
+
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton } from 'material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import View1 from './View1';
+import View2 from './View2';
 
 const Navigation = () => {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6">
-          AI Agent Hub Dashboard
-        </Typography>
-        <div style={{ marginLeft: 'auto' }}>
-          <Link to="/">Home</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/settings">Settings</Link>
-        </div>
-      </Toolbar>
-    </AppBar>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li><Link to='/view1'>View1</Link></li>
+            <li><Link to='/view2'>View2</Link></li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <Route path='/view1'>
+            <View1 />
+          </Route>
+          <Route path='/view2'>
+            <View2 />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
 export default Navigation;
-```
